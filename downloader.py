@@ -2,7 +2,6 @@ import requests as re
 import json
 import sys
 
-
 ##################### SCHEDGE DATA DOWNLOADER #####################
 
 ROOT_URL = "https://schedge.a1liu.com/"
@@ -43,3 +42,5 @@ with file as f:
         f.write("%s\n" % course)
 
 if file: file.close()
+
+

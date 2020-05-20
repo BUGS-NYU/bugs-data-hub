@@ -5,6 +5,7 @@ import sqlite3
 from sqlite3 import Error
 import datetime as dt
 import pandas as pd
+import csv
 
     #Creating connection with sqlite database
 def create_connection(db_file):
@@ -43,12 +44,6 @@ def scrape():
                                 flair text, 
                                 created_utc float NOT NULL
                                 );"""
-
-    # sql_create_subreddit_table =""" CREATE TABLE IF NOT EXISTS subreddit(
-    #                                 name text, 
-    #                                 subreddit text, 
-    #                                 FOREIGN KEY (name) REFERENCES user (name)
-    #                             );"""
 
     sql_create_post_table = """ CREATE TABLE IF NOT EXISTS post(
                                 id text Primary Key, 
@@ -183,7 +178,7 @@ def scrape():
         print("Error! Cannot connect to database!")
 
 
-def run():
+def convert_to_csv():
     #Create the connection
     conn = create_connection('R_NYU.db')
 
@@ -191,7 +186,10 @@ def run():
     posts = pd.read_sql("SELECT * FROM post", conn)
     users = pd.read_sql("SELECT * FROM user", conn)
     comments = pd.read_sql("SELECT * FROM comment", conn)
-    print(comments)
 
-    #Closing connection
+    posts.to_csv('data/reddit-posts.csv', encoding= 'utf-8', index = False)
+    users.to_csv('data/reddit-users.csv', encoding= 'utf-8', index = False)
+    comments.to_csv('data/reddit-comments.csv', encoding= 'utf-8', index = False)
     conn.close()
+
+convert_to_csv()
