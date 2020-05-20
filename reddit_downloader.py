@@ -7,7 +7,7 @@ import datetime as dt
 import pandas as pd
 import csv
 
-    #Creating connection with sqlite database
+#Creating connection with sqlite database
 def create_connection(db_file):
         conn = None
         try:
@@ -17,7 +17,7 @@ def create_connection(db_file):
             print(e)
         return conn
 
-    #Creating tables in the database
+#Creating tables in the database
 def create_table(conn, table_sql):
         try:
             c = conn.cursor()

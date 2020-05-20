@@ -19,7 +19,7 @@ if len(sys.argv) == 4:
 if sem not in sems:
     raise ValueError("Invalid semester for " + sem)
 
-#handle error later
+# @ToDo handle error
 for subject in contents:
     for subjectCode in contents[subject]:
         print("Retrieving course data for " + subjectCode + "-" + subject)
