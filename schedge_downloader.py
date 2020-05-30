@@ -39,6 +39,7 @@ else:
     file = open("data/" + year + sem + ".json", "w")
 with file as f:
     for course in data:
+        course = json.dumps(course)
         f.write("%s\n" % course)
 
 if file: file.close()
