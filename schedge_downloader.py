@@ -30,7 +30,7 @@ for subject in contents:
         if not courses:
             print("No available data for " + subjectCode + "-" + subject)
         else:
-            data.append(courses)
+            data += courses
 
 file = None
 if full:
