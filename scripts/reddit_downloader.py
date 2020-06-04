@@ -73,7 +73,7 @@ def scrape():
                                     );"""
 
     #Creating the sql table in the database
-    conn = create_connection('R_NYU.db')
+    conn = create_connection('../data/R_NYU.db')
     if conn is not None:
         create_table(conn, sql_create_user_table)
         create_table(conn, sql_create_post_table)
@@ -82,7 +82,7 @@ def scrape():
     else:
         print("Error! Can't create the database connection")
 
-    conn = create_connection('R_NYU.db')
+    conn = create_connection('../data/R_NYU.db')
     #NYU subreddit was created on Nov 4th, 2009. All the data will be from the very beginning 
     if conn is not None:
         birthdate = int(dt.datetime(2009,1,1).timestamp())
@@ -113,7 +113,7 @@ def scrape():
         print("Error! Cannot make a connection")
 
     #Getting the post id
-    conn = create_connection('R_NYU.db')
+    conn = create_connection('../data/R_NYU.db')
     posts = pd.read_sql("SELECT * FROM post", conn)
     id_list = posts['id'].tolist()
 
@@ -159,7 +159,7 @@ def scrape():
         print("Error! Cannot connect to database!")
         
     #Getting users' subreddits 
-    conn = create_connection('R_NYU.db')
+    conn = create_connection('../data/R_NYU.db')
     users = pd.read_sql("SELECT * FROM user", conn)
     users_name = users['name'].tolist()
     outputs = list()
@@ -180,16 +180,16 @@ def scrape():
 
 def convert_to_csv():
     #Create the connection
-    conn = create_connection('R_NYU.db')
+    conn = create_connection('../data/R_NYU.db')
 
     #Getting the data into pandas dataframe
     posts = pd.read_sql("SELECT * FROM post", conn)
     users = pd.read_sql("SELECT * FROM user", conn)
     comments = pd.read_sql("SELECT * FROM comment", conn)
 
-    posts.to_csv('data/reddit-posts.csv', encoding= 'utf-8', index = False)
-    users.to_csv('data/reddit-users.csv', encoding= 'utf-8', index = False)
-    comments.to_csv('data/reddit-comments.csv', encoding= 'utf-8', index = False)
+    posts.to_csv('../data/reddit-posts.csv', encoding= 'utf-8', index = False)
+    users.to_csv('../data/reddit-users.csv', encoding= 'utf-8', index = False)
+    comments.to_csv('../data/reddit-comments.csv', encoding= 'utf-8', index = False)
     conn.close()
 
 convert_to_csv()

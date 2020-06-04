@@ -34,9 +34,9 @@ for subject in contents:
 
 file = None
 if full:
-    file = open("data/" + year + sem + "full.json", "w")
+    file = open("../data/" + year + sem + "full.json", "w")
 else:
-    file = open("data/" + year + sem + ".json", "w")
+    file = open("../data/" + year + sem + ".json", "w")
 with file as f:
     for course in data:
         course = json.dumps(course)
