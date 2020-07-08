@@ -17,7 +17,7 @@ full = False
 if len(sys.argv) == 4:
     full = True
 if sem not in sems:
-    raise ValueError("Invalid semester for " + sem)
+    raise ValueError("Invalid semester " + sem)
 
 # @ToDo handle error
 for subject in contents:
